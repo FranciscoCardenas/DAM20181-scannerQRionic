@@ -1,14 +1,36 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Contacts
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <ion-card *ngIf="QRCode">
+    <ion-card-header>
+      <ngx-qrcode [qrc-value]="QRCode"></ngx-qrcode>
+    </ion-card-header>
+    <ion-card-content center>
+      Name: {{value.name}}
+      <br> Phone: {{value.phone}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!QRCode">
+    <ion-card-content>
+      Bienvenido
+    </ion-card-content>
+  </ion-card>
+
+  <button button ion-button block (click)="scan()">
+    <ion-icon name="qr-scanner"> Scan</ion-icon>
+  </button>
+
+  <button button ion-button block (click)="generate()">
+    <ion-icon name="create">Create</ion-icon>
+  </button>
+
+
 </ion-content>
