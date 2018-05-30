@@ -44,3 +44,48 @@ export class HomePage {
       alert(err.toString());
     });
   }
+
+  generate() {
+    let prompt = this.alertCtrl.create({
+      title: 'Crear QR',
+      message: "informacion del usuario",
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Name'
+        },
+        {
+          name: 'phone',
+          placeholder: 'Phone'
+        }
+       /*, {
+          name: 'email',
+          placeholder: 'Email'
+        },*/
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.value = {
+              name:data.name,
+              phone:data.phone
+              //,email:data.email
+            };
+            this.QRCode = JSON.stringify(this.value);
+          }
+        }
+      ]
+    });
+    prompt.present();
+
+    
+  }
+
+}
